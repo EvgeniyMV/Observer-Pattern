@@ -1,5 +1,5 @@
-class Cat: Observer {
-    override  fun <T> observeChanges(newState: T) {
+class Cat: Observer<Any> {
+    override  fun  observeChanges(newState: Any) {
         println("${this.javaClass.simpleName}: Meow?")
     }
 }

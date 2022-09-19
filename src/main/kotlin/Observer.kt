@@ -1,3 +1,3 @@
-interface Observer {
-    fun <T> observeChanges(newState: T)
+interface Observer<in T> {
+    fun observeChanges(newState: T)
 }

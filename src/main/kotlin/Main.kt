@@ -1,25 +1,15 @@
     fun main(args: Array<String>){
-       val generator = NumberGenerator()
+       val numberGenerator = NumberGenerator()
+        val dateGenerator = DateGenerator()
 
-        val human = Human()
-        val cat = Cat()
-        val math = Math()
-        val dateObserver = DateObserver()
+        val human: Observer<String> = Human()
+        val cat: Observer<Any> = Cat()
+        val math: Observer<Int> = Math()
+        val dateObserver: Observer<String> = DateObserver()
 
-        generator.registerObservable(human, cat, math, dateObserver)
-        generator.onNewNumberState()
-        generator.onNewDateState()
-
-        generator.registerObservable(object : Observer {
-            override fun <T> observeChanges(newState: T) {
-                if (newState is Int) {
-                    println("Я неведомый наблюдатель за числом $newState")
-                } else {
-                    println("Я неведомый наблюдатель за сущностью ${newState.toString()}")
-                }
-
-            }
-
-        })
+        numberGenerator.registerObservable(math, cat)
+        numberGenerator.onNewNumberState()
+        dateGenerator.registerObservable(human, cat, dateObserver)
+        dateGenerator.onNewDateState()
     }
 

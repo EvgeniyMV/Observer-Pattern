@@ -1,4 +1,4 @@
-interface Observable {
-    fun registerObservable(vararg observer: Observer)
-    fun  <T> notifyChanges (newState: T)
+interface Observable<T> {
+    fun  registerObservable(vararg observer: Observer<T>)
+    fun   notifyChanges (newState: T)
 }

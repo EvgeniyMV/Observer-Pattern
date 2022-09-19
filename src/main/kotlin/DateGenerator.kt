@@ -4,27 +4,31 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.concurrent.thread
 
-class NumberGenerator: Observable<Int> {
-   private var numberState = 0
-   private val observers: MutableList<Observer<Int>> = ArrayList<Observer<Int>>()
-    override fun registerObservable(vararg observer: Observer<Int>) {
+class DateGenerator: Observable<String> {
+   private var dateState = Date()
+   private val observers: MutableList<Observer<String>> = ArrayList<Observer<String>>()
+    override fun registerObservable(vararg observer: Observer<String>) {
         observer.forEach {
             observers.add(it)
         }
     }
-    override fun  notifyChanges(newState: Int) {
+
+    override fun notifyChanges(newState: String) {
         observers.forEach(){
             it.observeChanges(newState)
         }
     }
-    fun onNewNumberState(){
+    fun onNewDateState(){
         thread (start = true){
+            val formatter = SimpleDateFormat("dd.MM.yyyy")
             try {
                 while (true) {
-                    numberState++
-                    notifyChanges(numberState)
+                    dateState = Date()
+                    val date = formatter.format(dateState)
+                    notifyChanges(date)
                     Thread.sleep(3000)
                 }
+
             } catch (e: Exception) {
                 println(e.message)
             }

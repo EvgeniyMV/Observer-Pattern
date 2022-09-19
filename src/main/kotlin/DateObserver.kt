@@ -1,9 +1,5 @@
-class DateObserver: Observer {
-    override fun <T> observeChanges(newState: T) {
-        if (newState is Int) {
-            println("${this.javaClass.simpleName}: Не понимаю, что означают эти числа $newState")
-        } else {
-            println("${this.javaClass.simpleName}: Актуальная дата $newState")
-        }
+class DateObserver: StringObserver() {
+    override fun  observeChanges(newState: String) {
+        println("${this.javaClass.simpleName}: Текущая дата $newState")
     }
 }
