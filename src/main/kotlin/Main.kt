@@ -11,5 +11,6 @@
         numberGenerator.onNewNumberState()
         dateGenerator.registerObservable(human, cat, dateObserver)
         dateGenerator.onNewDateState()
+     /* Some changes for example*/
     }
 
